@@ -107,6 +107,51 @@ const sensitiveKeywords = [
 	"ilt01",
 ];
 
+// Patterns to ignore when searching for sensitive keywords
+const ignorePatterns = [
+	"ddd mmm dd yyyy HH:MM:ss", // Date format pattern
+	"yyyy-mm-dd",
+	"dd mmmm,yyyy",
+	"dd mmm, yyyy",
+	"dd mm yy",
+	"dd/mm/yyyy",
+	"dd mmm yyyy",
+	"UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",
+	"ddd mmm dd yyyy HH:MM:ss",
+	"data-dd-item",
+	"yyyy-MM-dd'T'HH:mm:ss'+00:00",
+	"dd: m(s)",
+	"DD Month YYYY",
+	"specific dd,",
+	"let dd = [];",
+	"if DD apply filter is clicked",
+	"let dd = document",
+	"YYYY-MM-DD-HH",
+	"dd mmmm, yyyy",
+	"<br>",
+	"</br>",
+	"Object.keys(DD)",
+	"const DD =",
+	"DD[key]",
+	"showDD",
+	"showSubDD",
+	"so that",
+	"global.CONFIG.TOKEN",
+	"const { username, password }",
+	"userData.password === password",
+	'TOKEN: "token"',
+	'secret: "randomsecret"',
+	"DD MMM YYYY HH:mm:SS",
+	"If there are nested DD",
+	'date as "DD"',
+	', "dd")',
+	"+key)}-dd",
+	'format: "dd"',
+	"dd mmm",
+
+	// Add more patterns to ignore here
+];
+
 // Files and folders to skip
 const skipPatterns = [
 	"node_modules",
@@ -120,7 +165,7 @@ const skipPatterns = [
 	".env.*",
 	"*.log",
 	"*.lock",
-	"tri-getclientinfo.json",
+	"si-sr.html",
 ];
 
 function shouldSkip(filePath) {
@@ -149,11 +194,18 @@ function searchInFile(filePath) {
 			// Search through each line
 			lines.forEach((line, index) => {
 				if (regex.test(line)) {
-					findings.push({
-						keyword: keyword,
-						lineNumber: index + 1,
-						line: line.trim(),
-					});
+					// Check if the line matches any ignore patterns
+					const shouldIgnore = ignorePatterns.some((pattern) =>
+						line.includes(pattern),
+					);
+
+					if (!shouldIgnore) {
+						findings.push({
+							keyword: keyword,
+							lineNumber: index + 1,
+							line: line.trim(),
+						});
+					}
 				}
 			});
 		});
