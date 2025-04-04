@@ -1,12 +1,19 @@
 {
-  "name": "nuxt-code-checker",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "nuxt-code-checker",
+	"version": "1.0.0",
+	"description": "Tool to find sensitive information and unused functions in code",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"find-sensitive": "node app.js",
+		"find-unused": "node find-unused-functions.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@babel/parser": "^7.24.0",
+		"@babel/traverse": "^7.24.0",
+		"@babel/types": "^7.24.0"
+	}
 }

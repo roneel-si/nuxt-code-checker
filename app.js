@@ -75,8 +75,8 @@ const sensitiveKeywords = [
 	"pr01",
 	"dsg",
 	"dsg01",
-	"uww",
-	"uww01",
+	"tri",
+	"tri01",
 	"wpl",
 	"wpl01",
 	"kc",
@@ -142,12 +142,41 @@ const ignorePatterns = [
 	'TOKEN: "token"',
 	'secret: "randomsecret"',
 	"DD MMM YYYY HH:mm:SS",
+	"mmmm dd, yyyy",
 	"If there are nested DD",
 	'date as "DD"',
 	', "dd")',
-	"+key)}-dd",
+	"key)}-dd",
 	'format: "dd"',
 	"dd mmm",
+	"<!-- password tab -->",
+	"do so",
+	"trade secret",
+	'class="btn-text">Password</span',
+	'<div class="form-body-wrapper create-password">',
+	"password.currentPasswordType == 'password'",
+	'autocomplete="current-password"',
+	'name="Current Password"',
+	'v-model="password.currentPassword"',
+	'placeholder="Enter your password"',
+	"password toggle",
+	"changeInputType('password','currentPasswordType')",
+	'<span class="password-sign"></span>',
+	'getErrorMessage("Current Password", "changepassword")',
+	"new-password",
+	"New Password",
+	"password.newPasswordType == 'password' ? 'password'",
+	'autocomplete="new-password"',
+	'name="password"',
+	'v-model="password.newPassword"',
+	'placeholder="Enter your password"',
+	'aria-label="Show/Hide password toggle"',
+	"changeInputType('password','newPasswordType')",
+	'class="password-sign"',
+	'getErrorMessage("password", "changepassword")',
+	"ddd, mmm dd, yyyy, hh:mm",
+	"this.password",
+	"this.token",
 
 	// Add more patterns to ignore here
 ];
@@ -166,6 +195,10 @@ const skipPatterns = [
 	"*.log",
 	"*.lock",
 	"si-sr.html",
+	"favicon.ico",
+	"apple-touch-icon.png",
+	"favicon-16x16.png",
+	"favicon-32x32.png",
 ];
 
 function shouldSkip(filePath) {
@@ -260,8 +293,7 @@ function scanDirectory(directoryPath) {
 
 // Get directory path from command line argument
 // const directoryPath = process.argv[2];
-const directoryPath =
-	"/Users/roneelparalkar/Desktop/projects/triathlon-website";
+const directoryPath = "/Users/roneelparalkar/Desktop/projects/wm-si-wafjs3.0";
 if (!directoryPath) {
 	console.error("Please provide a directory path as an argument");
 	console.error("Usage: node app.js <directory-path>");
